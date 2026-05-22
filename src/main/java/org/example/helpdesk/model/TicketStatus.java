@@ -1,4 +1,7 @@
 package org.example.helpdesk.model;
 
-public class TicketStatus {
+public enum TicketStatus {
+    NEW,
+    IN_PROGRESS,
+    RESOLVED
 }
