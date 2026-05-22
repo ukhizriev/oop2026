@@ -19,5 +19,13 @@ public class TicketController {
         model.addAttribute("tickets",
                 ticketRepository.findAllByOrderByCreatedAtDesc());
         return "tickets";
+
+
+    }
+    @GetMapping("/tickets/customer")
+    public String customer(Model model) {
+        model.addAttribute("tickets",
+                ticketRepository.findByCustomerNameContainingIgnoreCase("Иван"));
+        return "tickets";
     }
 }
