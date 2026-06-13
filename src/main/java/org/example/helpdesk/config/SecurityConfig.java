@@ -18,17 +18,21 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .exceptionHandling(ex -> ex
+                        .accessDeniedPage("/403")
+                )
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .requestMatchers(PathRequest.toH2Console()).permitAll()
 
                         .requestMatchers(HttpMethod.GET,
                                 "/", "/about", "/contacts", "/login",
-                                "/tickets/new", "/tickets/*/success"
+                                "/tickets/new", "/tickets/*/success", "/403"
                         ).permitAll()
                         .requestMatchers(HttpMethod.POST, "/tickets").permitAll()
 
                         .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/logout/**").hasRole("USER")
                         .anyRequest().authenticated()
                 )
                 .csrf(csrf -> csrf

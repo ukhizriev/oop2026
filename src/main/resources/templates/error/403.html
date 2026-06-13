@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Доступ запрещён</title>
+</head>
+<body>
+<h1>Доступ запрещён</h1>
+<p>У вас недостаточно прав для просмотра этой страницы.</p>
+
+<a th:href="@{/}">
+    <button type="button">На главную</button>
+</a>
+
+<form th:action="@{/logout}" method="post" style="display:inline">
+    <button type="submit">Выйти из учётной записи</button>
+</form>
+</body>
+</html>
